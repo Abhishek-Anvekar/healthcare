@@ -34,9 +34,9 @@ kafka:
     notifyTopic: user-notify-request
 
 twilio:
-  account-sid: ${TWILIO_ACCOUNT_SID:GIVE_TWILIO_SID}
-  auth-token: ${TWILIO_AUTH_TOKEN:GIVE_TWILIO_AUTHTOKEN}
-  from-number: ${TWILIO_FROM_NUMBER:GIVE_TWILIO_NUMBER}
+  account-sid: ${TWILIO_ACCOUNT_SID:}
+  auth-token: ${TWILIO_AUTH_TOKEN:}
+  from-number: ${TWILIO_FROM_NUMBER:}
 
 external:
   appointment-service-url: ${APPOINTMENT_BASE_URL:http://localhost:8084}
