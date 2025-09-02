@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_healthcare_service
+    username: root
+    password: Abhi@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf}
+    access-token-ttl-sec: ${JWT_ACCESS_TTL:900}   # 15 minutes JWT_TOKEN_VALIDITY
+    refresh-token-ttl-sec: ${JWT_REFRESH_TTL:604800} # 7 days REFRESH_TOKEN_VALIDITY
+
+external:
+  doctor-service-base-url: ${DOCTOR_BASE_URL:http://localhost:8083}
+  patient-service-base-url: ${PATIENT_BASE_URL:http://localhost:8082}
+  admin-service-base-url: ${ADMIN_BASE_URL:http://localhost:8085}
+
+logging:
+  level:
+    root: INFO
+    com.healthcare: DEBUG
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost

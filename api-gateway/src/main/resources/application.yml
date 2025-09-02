@@ -1,0 +1,83 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/auth/**
+              filters:
+                - RewritePath=/auth/(?<segment>.*), /auth/${segment}
+
+            - id: doctor-service
+              uri: lb://DOCTOR-SERVICE
+              predicates:
+                - Path=/doctors/**
+              filters:
+                - RewritePath=/doctors/(?<segment>.*), /doctors/${segment}
+
+            - id: patient-service
+              uri: lb://PATIENT-SERVICE
+              predicates:
+                - Path=/patients/**
+              filters:
+                - RewritePath=/patients/(?<segment>.*), /patients/${segment}
+
+            - id: admin-service
+              uri: lb://ADMIN-SERVICE
+              predicates:
+                - Path=/admins/**
+              filters:
+                - RewritePath=/admins/(?<segment>.*), /admin/${segment}
+
+            - id: appointment-service
+              uri: lb://APPOINTMENT-SERVICE
+              predicates:
+                - Path=/appointments/**
+              filters:
+                - RewritePath=/appointments/(?<segment>.*), /appointments/${segment}
+
+            - id: messaging-service
+              uri: lb://MESSAGING-SERVICE
+              predicates:
+                - Path=/api/messaging/**
+              filters:
+                - RewritePath=/api/messaging/(?<segment>.*), /api/messaging/${segment}
+
+#If you want to see all routing + APIs in one Swagger UI: Merges them into a single UI at API Gateway.
+#Gateway OpenAPI aggregation:
+
+#springdoc:
+#  swagger-ui:
+#    urls:
+#      - name: AUTH-SERVICE
+#        url: /auth/v3/api-docs
+#      - name: DOCTOR-SERVICE
+#        url: /doctors/v3/api-docs
+#      - name: PATIENT-SERVICE
+#        url: /patients/v3/api-docs
+#      - name: APPOINTMENT-SERVICE
+#        url: /appointments/v3/api-docs
+#      - name: MESSAGING-SERVICE
+#        url: /api/messaging/v3/api-docs
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    com.healthcare.api_gateway: DEBUG

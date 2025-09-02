@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: MESSAGING-SERVICE
+  profiles:
+    active: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/messaging_service
+    username: root
+    password: Abhi@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8090
+
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+  topics:
+    appointmentBooked: appointment-booked
+    appointmentConfirmed: appointment-confirmed
+    appointmentCancelled: appointment-cancelled
+    slotUpdated: doctor-slot-updated
+    notifyTopic: user-notify-request
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:AC354f20834e6a3ac79ef38e21cc719d12}
+  auth-token: ${TWILIO_AUTH_TOKEN:3c0401d0c1889ec3f4d708d89cc885ba}
+  from-number: ${TWILIO_FROM_NUMBER:+16414353411}
+
+external:
+  appointment-service-url: ${APPOINTMENT_BASE_URL:http://localhost:8084}
+  doctor-service-url: ${DOCTOR_BASE_URL:http://localhost:8083}
+  patient-service-url: ${PATIENT_BASE_URL:http://localhost:8082}
+
+messaging:
+  reminder:
+    enabled: true
+    # how many minutes before appointment to send reminder
+    reminders-minutes:
+      - 1440   # 1 day
+      - 60     # 1 hour
+    cron: "0 */5 * * * *" # every 5 minutes check
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
