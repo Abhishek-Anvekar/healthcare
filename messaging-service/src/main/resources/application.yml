@@ -33,10 +33,10 @@ kafka:
     slotUpdated: doctor-slot-updated
     notifyTopic: user-notify-request
 
-# twilio:
-#   account-sid: ${TWILIO_ACCOUNT_SID:}
-#   auth-token: ${TWILIO_AUTH_TOKEN:}
-#   from-number: ${TWILIO_FROM_NUMBER:}
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:your_account_sid}
+  auth-token: ${TWILIO_AUTH_TOKEN:your_auth_token}
+  from-number: ${TWILIO_FROM_NUMBER:your_twilio_number}
 
 external:
   appointment-service-url: ${APPOINTMENT_BASE_URL:http://localhost:8084}
