@@ -11,7 +11,7 @@ import com.healthcare.patient_service.service.BookingService;
 import com.healthcare.patient_service.service.ExternalServiceClient;
 import com.healthcare.patient_service.service.PatientService;
 import com.healthcare.patient_service.service.PaymentService;
-import com.javaguides.patient_service.service.*;
+import com.healthcare.patient_service.service.*;
 import com.healthcare.patient_service.util.Mappers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

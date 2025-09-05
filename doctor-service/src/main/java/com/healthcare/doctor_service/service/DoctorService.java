@@ -4,7 +4,7 @@ import com.healthcare.doctor_service.dto.DoctorDtos.*;
 import com.healthcare.doctor_service.entity.Doctor;
 import com.healthcare.doctor_service.exception.BadRequestException;
 import com.healthcare.doctor_service.exception.NotFoundException;
-import com.javaguides.doctor_service.exception.*;
+import com.healthcare.doctor_service.exception.*;
 import com.healthcare.doctor_service.repository.DoctorRepository;
 import com.healthcare.doctor_service.service.messaging.DoctorEventsProducer;
 import org.springframework.data.domain.*;

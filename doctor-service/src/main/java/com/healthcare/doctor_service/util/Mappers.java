@@ -6,7 +6,7 @@ import com.healthcare.doctor_service.dto.PrescriptionDtos.*;
 import com.healthcare.doctor_service.entity.AvailabilitySlot;
 import com.healthcare.doctor_service.entity.Doctor;
 import com.healthcare.doctor_service.entity.Prescription;
-import com.javaguides.doctor_service.entity.*;
+import com.healthcare.doctor_service.entity.*;
 
 public class Mappers {
     public static DoctorResponse toDoctorResponse(Doctor d){
